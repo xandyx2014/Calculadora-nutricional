@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="warning" defaultHref="/home" text="Atras"></ion-back-button>
+      </ion-buttons>
+      <ion-title color="medium">
+        Valor Nutricional
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+        <ion-list>
+            <ion-list-header>
+              <ion-label color="medium">Valor Nutricional</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of icons" > 
+              <ion-label color="medium" slot="start">Calorias :</ion-label>
+              <ion-note color="medium" slot="end">42</ion-note>
+            </ion-item>
+          </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

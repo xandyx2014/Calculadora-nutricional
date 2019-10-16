@@ -1,0 +1,34 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+.img-presentation {
+  height: 10vh;
+  margin-top: 0;
+  background-image: url('../../../assets/img/alimentos.jpg');
+  background-blend-mode: hard-light; 
+}
+ion-item {
+  --border-color	: var(--ion-color-warning);
+}
+.arriba {
+  margin-bottom: 2.5em;
+}
+.izquierda {
+  margin-right: 2.5em;
+}
+.title {
+  text-align: center;
+}
+.main-recetas {
+  width: 30%;
+  border: 1px solid var(--ion-color-warning);
+}
+.profile {
+  padding-top: 0.5em;
+  margin-bottom: 0.5em;
+  max-width: 30vw;
+}
+.img-receta {
+  max-width: 15vw;
+}

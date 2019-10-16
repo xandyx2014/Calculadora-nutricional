@@ -1,5 +1,7 @@
 {
   "name": "myAppNutri",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
