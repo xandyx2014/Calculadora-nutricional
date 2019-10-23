@@ -1,56 +1,63 @@
 <!--  -->
 <ion-content>
   <div class="img-presentation" fxLayout="row" fxLayoutAlign="center center">
-      <ion-text color="light" style="font-size: 1.5em;"> 
-       Bienvenido
-      </ion-text>
-    
+    <ion-text color="light" style="font-size: 1.5em;">
+      Bienvenido
+    </ion-text>
+
   </div>
   <ion-list>
     <ion-card fxLayout="column" fxLayoutAlign="center center">
       <img class="profile" src="assets/img/hombre.svg" alt="">
       <ion-card-content>
-          <ion-item>
-              <ion-label color="medium"  fxLayoutAlign="center center">{{ 'Nombre usuario' | titlecase }}</ion-label>
-            </ion-item>
-            <ion-text color="medium"  fxLayoutAlign="center center">
-                Lista de todoas tus recetas
-            </ion-text>
+        <ion-item>
+          <ion-label color="medium" fxLayoutAlign="center center">{{ 'Nombre usuario' | titlecase }}</ion-label>
+        </ion-item>
+        <ion-text color="medium" fxLayoutAlign="center center">
+          Lista de todoas tus recetas
+        </ion-text>
       </ion-card-content>
     </ion-card>
     <ion-item>
-        <ion-label class="title" color="medium"  fxLayoutAlign="center center">Tus Recetas</ion-label>
+      <ion-label class="title" color="medium" fxLayoutAlign="center center">Tus Recetas</ion-label>
     </ion-item>
     <div fxLayout="row wrap" fxLayoutAlign="center center">
-        
-        <ion-card 
-        *ngFor="let item of array;let i = index"
-        class="main-recetas" 
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        (click)="irReceta(1)"
-        >
-          <img class="img-receta" [src]=" '' | urlRecetas" alt="">
-          <ion-card-header>
-            <ion-card-subtitle color="medium" fxLayoutAlign="center center"> Comida {{ i + 1}}</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>
+
+      <ion-card *ngFor="let item of array;let i = index" class="main-recetas" fxLayout="column"
+        fxLayoutAlign="center center" (click)="irReceta(1)">
+        <img class="img-receta" [src]=" '' | urlRecetas" alt="">
+        <ion-card-header>
+          <ion-card-subtitle color="medium" fxLayoutAlign="center center"> Receta {{ i + 1}}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
     </div>
-    
-    
+
+
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button mode="ios" color="warning">
-          <ion-icon name="add-circle-outline"></ion-icon>
+    <ion-fab-button mode="ios" color="warning">
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="irInventario()" title="Inventario" mode="ios"  class="arriba" color="primary">
+        <ion-icon name="logo-dropbox"></ion-icon>
       </ion-fab-button>
-      <ion-fab-list side="top">
-        <ion-fab-button  mode="ios" translucent="true" class="arriba" color="primary"><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
-        <ion-fab-button  mode="ios" translucent="true" color="medium"><ion-icon name="settings"></ion-icon></ion-fab-button>
-      </ion-fab-list>
-      <ion-fab-list side="start" (click)="login()"> 
-        <ion-fab-button mode="ios" translucent="true" class="izquierda" color="secondary"><ion-icon name="logo-instagram"></ion-icon></ion-fab-button>
-      </ion-fab-list>
-    </ion-fab>
-    
+      <!-- <ion-text class="label-fab">lavel 1</ion-text> -->
+      <ion-fab-button (click)="presentModal()" mode="ios" title="Crear receta"  color="medium" color="warning">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button mode="ios" title="Configuracion"  color="medium">
+        <ion-icon name="settings"></ion-icon>
+      </ion-fab-button>
+      
+      <!-- <ion-text class="label-fab">lavel 1</ion-text> -->
+    </ion-fab-list>
+    <ion-fab-list side="start" (click)="login()">
+      <ion-fab-button mode="ios" title="Salir"   class="izquierda" color="secondary">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-fab-button>
+      <!-- <ion-text class="label-fab">lavel 1</ion-text> -->
+    </ion-fab-list>
+  </ion-fab>
+
 </ion-content>
- 

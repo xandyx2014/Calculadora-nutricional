@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { AgregarAlimentoComponent } from './components/agregar-alimento/agregar-alimento.component';
 
 @Component({
   selector: 'app-list',
@@ -20,15 +22,19 @@ export class ListPage implements OnInit {
     'bluetooth',
     'build'
   ];
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private modalController: ModalController) {
+  }
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: AgregarAlimentoComponent,
+      cssClass: 'my-custom-modal-css'
+    });
+    return await modal.present();
   }
   irPagina() {
     this.router.navigate(['/valor-nutricional']);
   }
   ngOnInit() {
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
 }

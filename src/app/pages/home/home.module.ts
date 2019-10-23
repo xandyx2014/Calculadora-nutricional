@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UrlRecetasPipe } from 'src/app/pipes/url-recetas.pipe';
+import { AddRecetaComponent } from './components/add-receta/add-receta.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +21,7 @@ import { UrlRecetasPipe } from 'src/app/pipes/url-recetas.pipe';
       }
     ])
   ],
-  declarations: [HomePage, UrlRecetasPipe]
+  declarations: [HomePage, UrlRecetasPipe, AddRecetaComponent],
+  entryComponents: [AddRecetaComponent]
 })
 export class HomePageModule {}

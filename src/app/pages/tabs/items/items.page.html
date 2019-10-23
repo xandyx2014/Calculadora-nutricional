@@ -1,4 +1,24 @@
-
 <ion-content>
-   <p>items in? Corporis quibusdam sapiente quasi, dolores eligendi quae, quo aut id a tempora velit expedita voluptates.</p>
+   <ion-list>
+      <ion-list-header>
+         Tus items Creados
+      </ion-list-header>
+
+      <ion-item *ngFor="let item of array" (click)="presentModal()">
+         <ion-avatar slot="start">
+            <img src="assets/img/default.jpg">
+         </ion-avatar>
+         <ion-label>
+            <h2>Nombre Comida</h2>
+            <h3>cantidad: #</h3>
+            <p>Fecha creado: 2019/04/15</p>
+            <ion-badge color="primary">Categoria</ion-badge>
+         </ion-label>
+      </ion-item>
+   </ion-list>
+   <ion-fab (click)="presentModal()" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="danger">
+         <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+   </ion-fab>
 </ion-content>

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { ListPage } from './list.page';
 import { UrlRecetasPipe } from 'src/app/pipes/url-recetas.pipe';
+import { AgregarAlimentoComponent } from './components/agregar-alimento/agregar-alimento.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { UrlRecetasPipe } from 'src/app/pipes/url-recetas.pipe';
       }
     ])
   ],
-  declarations: [ListPage]
+  declarations: [ListPage, AgregarAlimentoComponent],
+  entryComponents: [AgregarAlimentoComponent]
 })
 export class ListPageModule {}

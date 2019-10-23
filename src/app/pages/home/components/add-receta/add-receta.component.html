@@ -1,0 +1,37 @@
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle mode="md">Crea tu tarjeta</ion-card-subtitle>
+      <ion-card-title mode="md">Receta</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <form>
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+              <ion-item>
+                <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
+                <ion-input required type="text"></ion-input>
+              </ion-item>
+      
+              
+              
+              <ion-item>
+                  <ion-label position="stacked">Descripcion</ion-label>
+                  <ion-textarea></ion-textarea>
+              </ion-item>
+      
+              <ion-item>
+                  <ion-label position="stacked">Cantidad Personas <ion-text color="danger">*</ion-text></ion-label>
+                  <ion-input required type="number"></ion-input>
+              </ion-item>
+
+              
+            </ion-list>
+      
+            <div style="padding: 1em;">
+              <ion-button (click)="crear()" expand="full" color="warning">Crear Receta</ion-button>
+            </div>
+          </form>
+    </ion-card-content>
+  </ion-card>
+    
+  </ion-content>

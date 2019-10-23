@@ -1,0 +1,35 @@
+<ion-content>
+  <ion-card >
+    <ion-card-header>
+      <ion-card-subtitle mode="md">Seleccione tu alimento</ion-card-subtitle>
+      <ion-card-title mode="md">Alimentos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label>Disponible</ion-label>
+            <ion-select mode="md" ok-text="ok" cancel-text="salir">
+              <ion-select-option value="dos">DOS</ion-select-option>
+              <ion-select-option value="lunix">Linux</ion-select-option>
+              <ion-select-option value="mac7">Mac OS 7</ion-select-option>
+              <ion-select-option value="mac8">Mac OS 8</ion-select-option>
+              <ion-select-option value="win3.1">Windows 3.1</ion-select-option>
+              <ion-select-option value="win95">Windows 95</ion-select-option>
+              <ion-select-option value="win98">Windows 98</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Cantidad <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number"></ion-input>
+          </ion-item>
+        </ion-list>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab (click)="crear()" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger">
+      <ion-icon name="save"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

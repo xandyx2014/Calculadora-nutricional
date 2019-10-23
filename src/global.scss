@@ -17,6 +17,11 @@
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
 @import '~@ionic/angular/css/display.css';
+.my-custom-modal-css {
+  --max-width: 80%;
+  --max-height: 80%;
+  --border-radius: 5px;
+}
 
 /* Optional CSS utils that can be commented out */
 /* @import "~@ionic/angular/css/padding.css";
