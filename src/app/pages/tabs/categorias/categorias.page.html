@@ -3,27 +3,12 @@
       <ion-list-header>
           Tus Categorias Creadas
        </ion-list-header>
-    <ion-item>
-      <ion-label>
-        <ion-badge color="primary">Nombre de Categoria</ion-badge>
-        <h3><i> descripcion de la categoria </i></h3>
-        <p>Fecha creado: 2019/04/15</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <ion-badge color="primary">Nombre de Categoria</ion-badge>
-        <h3><i> descripcion de la categoria </i></h3>
-        <p>Fecha creado: 2019/04/15</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-          <ion-badge color="primary">Nombre de Categoria</ion-badge>
-        <h3><i> descripcion de la categoria </i></h3>
-        <p>Fecha creado: 2019/04/15</p>
-      </ion-label>
-    </ion-item>
+       <ng-container *ngIf="(categoria$ | async) as categoria;">
+         <app-categoria [categorias]="categoria.data" (recetaUpdateOK)="cargarDatos()"></app-categoria>
+       </ng-container>
+       
+       
+    
   </ion-list>
   <ion-fab (click)="presentModal()" vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button color="primary">

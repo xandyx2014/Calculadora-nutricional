@@ -1,25 +1,137 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button color="warning" defaultHref="/home" text="Atras"></ion-back-button>
-      </ion-buttons>
-      <ion-title color="medium">
-        Valor Nutricional
-      </ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="warning" defaultHref="/home" text="Atras"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="medium">
+      Valor Nutricional
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-card>
-    <ion-card-content>
+  <ng-container *ngIf="($alimento | async) as alimento; else elseTemplate">
+    <ion-card>
+      <ion-card-content>
         <ion-list>
-            <ion-list-header>
-              <ion-label color="medium">Valor Nutricional</ion-label>
-            </ion-list-header>
-            <ion-item *ngFor="let item of icons"> 
-              <ion-label color="medium" slot="start">Calorias :</ion-label>
-              <ion-note color="medium" slot="end">42</ion-note>
-            </ion-item>
-          </ion-list>
-    </ion-card-content>
-  </ion-card>
+          <ion-list-header>
+            <ion-label color="medium">Valor Nutricional</ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-label color="medium" slot="start">Caloria :</ion-label>
+            <ion-note color="medium" slot="end">{{alimento.ca}}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">PB (kg) :</ion-label>
+            <ion-note color="medium" slot="end">{{cantidadTotalAlimento}}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">$ Unidad:</ion-label>
+            <ion-note color="medium" slot="end">{{alimento.precio_unidad}}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Total:</ion-label>
+            <ion-note color="medium" slot="end">{{total( cantidadTotalAlimento, alimento.precio_unidad)}}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">FC:</ion-label>
+            <ion-note color="medium" slot="end">{{ alimento.fc}}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">PN(kg):</ion-label>
+            <ion-note color="medium" slot="end">{{ pnKg(cantidadTotalAlimento, alimento.fc)}}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">PN/rac/día:</ion-label>
+            <ion-note color="medium" slot="end">{{ pnRacDia() }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Prac a gramo</ion-label>
+            <ion-note color="medium" slot="end">{{ pracAGramo() }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">H de C</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.h_d_c) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Prot</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.prot) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Grs</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.grs) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Ca</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.Ca) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Fe</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.fe) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Fibra</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.fibra) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Na</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.na) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Potasio</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.potasio) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Vitamina C</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.vitamina_c) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Vitamina A</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.vitamina_a) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Vitamina E</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.vitamina_e) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Vitamina K</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.vitamina_k) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Vitamina B1</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.vitamina_b1) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Vitamina B6</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.vitamina_b6) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Vitamina B12</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.vitamina_b12) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" slot="start">Colesterol</ion-label>
+            <ion-note color="medium" slot="end">{{ calculoNutricion(alimento.colesterol) }}</ion-note>
+          </ion-item>
+          
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-list-header>
+            <ion-label color="medium">Valor Nutricional</ion-label>
+          </ion-list-header>
+          <ion-item *ngFor="let item of delayAlimento">
+            <ion-label color="medium" slot="start">
+              <ion-skeleton-text [width]="0 | randomWith:20:100"></ion-skeleton-text>
+            </ion-label>
+            <ion-skeleton-text width="20%" slot="end"></ion-skeleton-text>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
 </ion-content>

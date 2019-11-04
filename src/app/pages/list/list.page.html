@@ -10,43 +10,43 @@
 </ion-header>
 
 <ion-content>
-  <ion-img src="assets/img/default.jpg"></ion-img>
-  <ion-item class="title--page">
-    <ion-avatar slot="start">
-      <img src="assets/img/default.jpg">
-    </ion-avatar>
-    <ion-label>
-      <h2>{{ 'nombre de la receta' | titlecase}}</h2>
-      <h3> 2019-04-15</h3>
-      <p>Listen, I've had a pretty messed up day...</p>
-    </ion-label>
-  </ion-item>
-  <ion-card>
-    <ion-card-content>
-      <ion-list>
-        <ion-list-header>
-          <ion-label color="medium">Ingredientes</ion-label>
-        </ion-list-header>
-        <ion-item *ngFor="let item of icons" lines="none"> 
-          <ion-note color="warning" slot="start">42</ion-note>
-          <ion-text color="medium">
-            Awesome text
-          </ion-text>  
-        </ion-item>
-      </ion-list>
-      
-      <ion-button (click)="presentModal()" color="warning" fill="solid" shape="round" expand="block">
-        <ion-icon slot="start" name="add" color="light"></ion-icon>
-        Agregar Comida
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-content>
-      <ion-button (click)="irPagina()" color="warning" fill="solid" shape="round" expand="block">
-          <ion-icon slot="start" name="calculator" color="light"></ion-icon>
-          Ver valor Nutricional
+  <ng-container *ngIf="($detalleReceta | async) as detalleReceta; else elseTemplate">
+    <ion-img [src]=" imagenPreview | urlImg"></ion-img>
+    <ion-item class="title--page">
+      <ion-avatar slot="start">
+        <img [src]=" imagenPreview | urlImg">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ receta.nombre | titlecase}}</h2>
+        <h3> {{receta.createdAt | date: 'dd/MM/yyyy'}}</h3>
+        <p>{{receta.descripcion}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-card>
+      <ion-card-content>
+
+        <app-list-alimento [detalleReceta]="detalleReceta" (actualizarDatos)="obtenerDatos()"></app-list-alimento>
+
+        <ng-template #elseTemplate>
+
+        </ng-template>
+
+
+
+        <ion-button (click)="presentModal()" color="warning" fill="solid" shape="round" expand="block">
+          <ion-icon slot="start" name="add" color="light"></ion-icon>
+          Agregar Comida
         </ion-button>
-    </ion-card-content>
-  </ion-card>
+        <div class="button-wrapper">
+            <span class="label">
+              Subir Foto
+            </span>
+            
+              <input (change)="obtenerImagen($event)" type="file" name="upload" id="upload" class="upload-box" placeholder="Upload File">
+            
+          </div>
+      </ion-card-content>
+    </ion-card>
+
+  </ng-container>
 </ion-content>

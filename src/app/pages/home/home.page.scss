@@ -20,18 +20,13 @@ ion-item {
 .title {
   text-align: center;
 }
-.main-recetas {
-  width: 30%;
-  border: 1px solid var(--ion-color-warning);
-}
+
 .profile {
   padding-top: 0.5em;
   margin-bottom: 0.5em;
   max-width: 30vw;
 }
-.img-receta {
-  max-width: 19vw;
-}
+
 
 ion-fab-button[title] {
   position: relative;

@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ValorNutricionalPage } from './valor-nutricional.page';
+import { RandomWithPipe } from 'src/app/pipes/random-with.pipe';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 const routes: Routes = [
@@ -20,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    PipesModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ValorNutricionalPage],

@@ -20,19 +20,11 @@
     </ion-card>
     <ion-item>
       <ion-label class="title" color="medium" fxLayoutAlign="center center">Tus Recetas</ion-label>
-    </ion-item>
-    <div fxLayout="row wrap" fxLayoutAlign="center center">
-
-      <ion-card *ngFor="let item of array;let i = index" class="main-recetas" fxLayout="column"
-        fxLayoutAlign="center center" (click)="irReceta(1)">
-        <img class="img-receta" [src]=" '' | urlRecetas" alt="">
-        <ion-card-header>
-          <ion-card-subtitle color="medium" fxLayoutAlign="center center"> Receta {{ i + 1}}</ion-card-subtitle>
-        </ion-card-header>
-      </ion-card>
-    </div>
-
-
+    </ion-item> 
+    <ng-container *ngIf="$receta| async as receta;">
+        <app-receta [receta]="receta.data"></app-receta>
+    </ng-container>
+    
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button mode="ios" color="warning">

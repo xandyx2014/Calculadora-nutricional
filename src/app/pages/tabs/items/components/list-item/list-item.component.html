@@ -1,0 +1,39 @@
+<ion-list>
+  <ion-list-header>
+    Tus items Creados
+  </ion-list-header>
+  <div id="obrz">
+  <ng-container *ngIf="alimentos?.length > 0; else elseTemplate">
+    <ion-item *ngFor="let item of alimentos" (click)="presentModal(item)">
+      <ion-avatar slot="start">
+        <img src="assets/img/default.jpg">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.nombre}}</h2>
+        <h3>Cantidad: {{item.pb_kg}}kg</h3>
+        <h4>Precio x Unidad: {{item.precio_unidad}} Bs.</h4>
+        <p>Fecha creado: {{item.createdAt  | date: 'dd/MM/yyyy'}}</p>
+        <p>Fecha modificado: {{item.updatedAt  | date: 'dd/MM/yyyy'}}</p>
+        <ion-badge [color]="item.Categorium['color']">{{item?.Categorium['nombre']}}</ion-badge>
+      </ion-label>
+    </ion-item>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="assets/img/default.jpg">
+      </ion-avatar>
+      <ion-label>
+        <h2>No hay items disponibles</h2>
+        <h3>cantidad: 0</h3>
+        <p>Cree un nuevo item</p>
+        <ion-badge color="primary">Categoria</ion-badge>
+      </ion-label>
+    </ion-item>
+  </ng-template>
+  
+</div>
+</ion-list>
+<ion-button (click)="crearPdf()">
+  CrearPdf
+</ion-button>

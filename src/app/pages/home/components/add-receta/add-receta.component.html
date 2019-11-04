@@ -5,30 +5,30 @@
       <ion-card-title mode="md">Receta</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-        <form>
+        <form [formGroup]="form">
             <ion-list lines="full" class="ion-no-margin ion-no-padding">
               <ion-item>
                 <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
-                <ion-input required type="text"></ion-input>
+                <ion-input formControlName="nombre" type="text"></ion-input>
               </ion-item>
       
               
               
               <ion-item>
                   <ion-label position="stacked">Descripcion</ion-label>
-                  <ion-textarea></ion-textarea>
+                  <ion-textarea formControlName="descripcion"></ion-textarea>
               </ion-item>
       
               <ion-item>
                   <ion-label position="stacked">Cantidad Personas <ion-text color="danger">*</ion-text></ion-label>
-                  <ion-input required type="number"></ion-input>
+                  <ion-input formControlName="total_persona" required type="number"></ion-input>
               </ion-item>
 
               
             </ion-list>
       
             <div style="padding: 1em;">
-              <ion-button (click)="crear()" expand="full" color="warning">Crear Receta</ion-button>
+              <ion-button (click)="crear()" [disabled]="form.invalid" expand="full" color="warning">Crear Receta</ion-button>
             </div>
           </form>
     </ion-card-content>

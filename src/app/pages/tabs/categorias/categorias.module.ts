@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
 import { CategoriasPage } from './categorias.page';
-import { AddCategoriaPage } from './add-categoria/add-categoria.page';
+import { AddCategoriaPage } from './components/add-categoria/add-categoria.page';
+import { CategoriaComponent } from './components/categoria/categoria.component';
+
 
 const routes: Routes = [
   {
@@ -19,10 +21,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CategoriasPage, AddCategoriaPage],
+  declarations: [CategoriasPage, AddCategoriaPage, CategoriaComponent],
   entryComponents: [AddCategoriaPage]
 })
 export class CategoriasPageModule {}

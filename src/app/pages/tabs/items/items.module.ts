@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ItemsPage } from './items.page';
 import { ModalCreateComponent } from './components/modal-create/modal-create.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ListItemComponent } from './components/list-item/list-item.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
     FlexLayoutModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ItemsPage, ModalCreateComponent],
+  declarations: [ItemsPage, ModalCreateComponent, ListItemComponent],
   entryComponents: [ModalCreateComponent]
 })
 export class ItemsPageModule {}

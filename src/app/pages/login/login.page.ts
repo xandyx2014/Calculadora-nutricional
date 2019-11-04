@@ -31,8 +31,8 @@ export class LoginPage implements OnInit {
   login() {
     if (this.myForm.valid) {
       const { username, password } = this.myForm.value;
-      this.router.navigate(['/home']);
-      // this.loginService.login(username, password);
+      // this.router.navigate(['/home']);
+      this.loginService.login(username, password);
     } else {
       this.notificationService.presentToast('Falta datos por completar', 'bottom');
     }

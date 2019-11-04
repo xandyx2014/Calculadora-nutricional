@@ -1,0 +1,21 @@
+<ng-container *ngIf="receta.length > 0;else elseTemplate">
+    <div fxLayout="row wrap" fxLayoutAlign="center center">
+  <ion-card *ngFor="let item of receta;let i = index" (click)="irReceta(item)" class="main-recetas" fxLayout="column"
+    fxLayoutAlign="center center">
+    <img class="img-receta" [src]=" item.foto | urlImg" alt="">
+    <ion-card-header>
+      <ion-card-subtitle color="medium" fxLayoutAlign="center center"> {{item.nombre}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle mode="md">No existen Datos</ion-card-subtitle>
+      <ion-card-title mode="md" color="medium">Cantidad: 0</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ng-template>
+
+

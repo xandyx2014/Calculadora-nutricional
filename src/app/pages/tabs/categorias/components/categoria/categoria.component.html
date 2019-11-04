@@ -1,0 +1,19 @@
+<ng-container *ngIf="categorias.length > 0; else elseTemplate">
+  <ion-item *ngFor="let item of categorias" (click)="presentModal(item)">
+    <ion-label>
+      <ion-badge [color]="item.color">{{item.nombre}}</ion-badge>
+      <h3><i> {{item.descripcion}} </i></h3>
+      <p>Fecha creado: {{ item.createdAt | date: 'dd/MM/yyyy'}}</p>
+    </ion-label>
+  </ion-item>
+</ng-container>
+
+
+<ng-template #elseTemplate>
+  <ion-item>
+    <ion-label>
+      <ion-badge color="primary">No hay categorias</ion-badge>
+      <h3><i> Crea una categoria</i></h3>
+    </ion-label>
+  </ion-item>
+ </ng-template>

@@ -1,20 +1,20 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle mode="md">Crear</ion-card-subtitle>
+      <ion-card-subtitle mode="md">Formulario</ion-card-subtitle>
       <ion-card-title mode="md">Categoria</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form>
+      <form [formGroup]="form">
         <ion-list lines="full">
           <ion-item>
             <ion-label position="stacked">Nombre <ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-input required type="text"></ion-input>
+            <ion-input formControlName="nombre" required type="text"></ion-input>
           </ion-item>
           <ion-item>
               <ion-label [color]="color">Color</ion-label>
-              <ion-select value="brown" okText="Okay" cancelText="Dismiss" interface="alert" (ionChange)="cambiarColor($event)">
+              <ion-select formControlName="color" okText="Aceptar" cancelText="Salir" interface="alert" (ionChange)="cambiarColor($event)">
                 <ion-select-option value="primary" color="primary">Azul</ion-select-option>
                 <ion-select-option value="warning">Amarillo</ion-select-option>
                 <ion-select-option value="danger">Rojo</ion-select-option>
@@ -23,11 +23,15 @@
           </ion-item>
           <ion-item>
               <ion-label position="stacked">Descripcion</ion-label>
-              <ion-textarea maxlength="120"></ion-textarea>
+              <ion-textarea formControlName="descripcion" maxlength="120"></ion-textarea>
           </ion-item>
         </ion-list>
       </form>
-      <ion-button (click)="crear()" expand="full" color="primary">Crear Receta</ion-button>
+      <ion-button *ngIf="verificarEstado();else botonActualizar" (click)="crear()" [disabled]="form.invalid" expand="full" color="primary" >Crear Receta</ion-button>
+      <ng-template #botonActualizar>
+        <ion-button (click)="actualizarReceta()" [disabled]="form.invalid" expand="full" color="primary" >Actualizar Receta</ion-button>
+      </ng-template>
+      
     </ion-card-content>
   </ion-card>
 </ion-content>

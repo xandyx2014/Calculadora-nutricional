@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlHost: 'http://localhost:3000',
+  urlHost: 'https://calculdoranutricionalapp.herokuapp.com',
   storageKey: 'userAppNutri'
 };
 

@@ -1,0 +1,28 @@
+<ng-container *ngIf="detalleReceta['length'] > 0; else elseTemplate">
+  <ion-list>
+    <ion-list-header>
+      <ion-label color="medium">Ingredientes</ion-label>
+    </ion-list-header>
+      <ion-item  *ngFor="let item of detalleReceta" (click)="presentActionSheet(item)"> 
+        <ion-note color="warning" slot="start">{{item.cantidad}}</ion-note>
+        <ion-text color="medium">
+          {{item.Alimento.nombre}}
+        </ion-text>  
+      </ion-item>
+  </ion-list>
+</ng-container>
+<ng-template #elseTemplate>
+    <ion-list>
+        <ion-list-header>
+          <ion-label color="medium">No existen Alimentos</ion-label>
+        </ion-list-header>
+        <ion-item lines="none"> 
+          <ion-note color="warning" slot="start">0</ion-note>
+          <ion-text color="danger">
+            Agrega un Alimento
+          </ion-text>  
+        </ion-item>
+      </ion-list>
+</ng-template>
+
+
