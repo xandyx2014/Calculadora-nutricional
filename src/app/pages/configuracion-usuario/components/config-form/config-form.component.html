@@ -1,0 +1,31 @@
+<ng-container *ngIf="ok">
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label position="floating" color="medium">Nombre de usuario</ion-label>
+      <ion-input formControlName="username" name="username"  (ionChange)="quitarEspacios($event)" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="medium">Nombre personal</ion-label>
+      <ion-input formControlName="nombre" required></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating" color="medium">Apellido</ion-label>
+        <ion-input formControlName="apellidos" required></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Genero</ion-label>
+        <ion-select  formControlName="sexo" placeholder="Selecciona uno" mode="md">
+          <ion-select-option value="hombre">Hombre</ion-select-option>
+          <ion-select-option value="mujer">Mujer</ion-select-option>
+        </ion-select>
+      </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="medium">contraseña</ion-label>
+      <ion-input type="password" formControlName="password" required></ion-input>
+    </ion-item>
+    <ion-button (click)="actualizarUsuario()" [disabled]="form.invalid" color="warning" fill="solid" expand="block">
+      Crear
+    </ion-button>
+  </form>
+</ng-container>
+

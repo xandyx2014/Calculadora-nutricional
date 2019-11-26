@@ -1,9 +1,13 @@
-
 <ion-content>
   <div class="hero-bkg-animated">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <ion-avatar style="width: 100px;height: 100px;">
+        <img src="assets/logo.png" />
+      </ion-avatar>
+    </div>
     <ion-card color="light" mode="ios">
-      <ion-card-content *ngIf="myForm"> 
-        <form [formGroup]="myForm" >
+      <ion-card-content *ngIf="myForm">
+        <form [formGroup]="myForm">
           <ion-item color="light">
             <ion-label position="floating" color="medium">usuario</ion-label>
             <ion-input formControlName="username" required></ion-input>
@@ -12,6 +16,10 @@
             <ion-label position="floating" color="medium">contraseña</ion-label>
             <ion-input type="password" formControlName="password" required></ion-input>
           </ion-item>
+          <ion-label color="medium">No tienes cuenta create <ion-text (click)="presentModal()" color="primary">
+              una...
+            </ion-text>
+          </ion-label>
           <ion-button (click)="login()" color="warning" fill="solid" shape="round" expand="block">
             login
           </ion-button>

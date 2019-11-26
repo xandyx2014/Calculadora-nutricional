@@ -29,6 +29,11 @@ const routes: Routes = [
     path: 'inventario',
     canLoad: [AuthGuard],
     loadChildren: () => import('./pages/tabs/home/home.module').then(m => m.HomePageModule)
+  },
+  {
+    path: 'configuracion-usuario',
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./pages/configuracion-usuario/configuracion-usuario.module').then(m => m.ConfiguracionUsuarioPageModule)
   }
 ];
 

@@ -1,28 +1,26 @@
 <!--  -->
 <ion-content>
-  <div class="img-presentation" fxLayout="row" fxLayoutAlign="center center">
-    <ion-text color="light" style="font-size: 1.5em;">
-      Bienvenido
-    </ion-text>
-
-  </div>
+  
   <ion-list>
-    <ion-card fxLayout="column" fxLayoutAlign="center center">
-      <img class="profile" src="assets/img/hombre.svg" alt="">
-      <ion-card-content>
-        <ion-item>
-          <ion-label color="medium" fxLayoutAlign="center center">{{ 'Nombre usuario' | titlecase }}</ion-label>
-        </ion-item>
-        <ion-text color="medium" fxLayoutAlign="center center">
-          Lista de todoas tus recetas
-        </ion-text>
-      </ion-card-content>
-    </ion-card>
+    <ng-container *ngIf="($usuario | async) as usuario">
+        <ion-card fxLayout="column" fxLayoutAlign="center center">
+            <img *ngIf="usuario.sexo === 'hombre'" class="profile" src="assets/img/hombre.svg" alt="">
+            <img *ngIf="usuario.sexo === 'mujer'" class="profile" src="assets/img/mujer.svg" alt="">
+            <ion-card-content>
+              <ion-item>
+                <ion-label color="medium" fxLayoutAlign="center center">{{ usuario.username | titlecase }}</ion-label>
+              </ion-item>
+              <ion-text color="medium" fxLayoutAlign="center center">
+                LISTA DE RECETAS
+              </ion-text>
+            </ion-card-content>
+          </ion-card>
+    </ng-container>
     <ion-item>
       <ion-label class="title" color="medium" fxLayoutAlign="center center">Tus Recetas</ion-label>
     </ion-item> 
     <ng-container *ngIf="$receta| async as receta;">
-        <app-receta [receta]="receta.data"></app-receta>
+        <app-receta [receta]="receta.data" (completadoReceta)="obtenerDatos()"></app-receta>
     </ng-container>
     
   </ion-list>
@@ -38,7 +36,7 @@
       <ion-fab-button (click)="presentModal()" mode="ios" title="Crear receta"  color="medium" color="warning">
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button mode="ios" title="Configuracion"  color="medium">
+      <ion-fab-button (click)="irConfiguracion()" mode="ios" title="Configuracion"  color="medium">
         <ion-icon name="settings"></ion-icon>
       </ion-fab-button>
       

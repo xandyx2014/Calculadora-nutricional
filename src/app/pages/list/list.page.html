@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="($detalleReceta | async) as detalleReceta; else elseTemplate">
+  <ng-container *ngIf="($detalleReceta | async) as detalleReceta;">
     <ion-img [src]=" imagenPreview | urlImg"></ion-img>
     <ion-item class="title--page">
       <ion-avatar slot="start">
@@ -26,10 +26,6 @@
       <ion-card-content>
 
         <app-list-alimento [detalleReceta]="detalleReceta" (actualizarDatos)="obtenerDatos()"></app-list-alimento>
-
-        <ng-template #elseTemplate>
-
-        </ng-template>
 
 
 

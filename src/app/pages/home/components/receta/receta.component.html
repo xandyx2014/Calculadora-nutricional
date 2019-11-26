@@ -1,6 +1,6 @@
 <ng-container *ngIf="receta.length > 0;else elseTemplate">
     <div fxLayout="row wrap" fxLayoutAlign="center center">
-  <ion-card *ngFor="let item of receta;let i = index" (click)="irReceta(item)" class="main-recetas" fxLayout="column"
+  <ion-card *ngFor="let item of receta;let i = index" (click)="mostrar(item)" class="main-recetas" fxLayout="column"
     fxLayoutAlign="center center">
     <img class="img-receta" [src]=" item.foto | urlImg" alt="">
     <ion-card-header>

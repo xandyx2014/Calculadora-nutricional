@@ -6,7 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
-
+import { UserComponent } from './components/user/user.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 const routes: Routes = [
   {
     path: '',
@@ -20,8 +21,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    FlexLayoutModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage, UserComponent],
+  entryComponents: [UserComponent]
 })
 export class LoginPageModule {}

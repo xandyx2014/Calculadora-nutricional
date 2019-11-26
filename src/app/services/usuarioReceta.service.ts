@@ -30,4 +30,18 @@ export class UsuarioRecetaService {
       )
     );
   }
+  obtenerReceta(idReceta: string) {
+    return this.loginService.getUserLocalStorage().pipe(
+      switchMap(usuario =>
+      this.http.get< IRespApi<IReceta> >(`http://localhost:3000/usuario/${usuario.id}/receta/${idReceta}`)
+      )
+    );
+  }
+  actualizarReceta( receta: IReceta) {
+    return this.loginService.getUserLocalStorage().pipe(
+      switchMap(usuario =>
+      this.http.put(`http://localhost:3000/usuario/receta/${usuario.id}`, {...receta})
+      )
+    );
+  }
 }

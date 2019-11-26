@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ToastController, AlertController } from '@ionic/angular';
-import { ToastOptions, AlertOptions } from '@ionic/core';
+import { ToastController, AlertController, ActionSheetController } from '@ionic/angular';
+import { ToastOptions, AlertOptions, ActionSheetOptions } from '@ionic/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  constructor(private toastController: ToastController,
-              private alertController: AlertController) {}
+  constructor(
+    private toastController: ToastController,
+    public actionSheetController: ActionSheetController,
+    private alertController: AlertController) { }
 
   async presentToast(message, config: ToastOptions['position']) {
     const toast = await this.toastController.create({
@@ -26,4 +28,9 @@ export class NotificationService {
 
     await alert.present();
   }
+  async presentActionSheet(opts: ActionSheetOptions) {
+    const actionSheet = await this.actionSheetController.create(opts);
+    await actionSheet.present();
+  }
+
 }

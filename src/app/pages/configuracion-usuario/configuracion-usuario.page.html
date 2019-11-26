@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+          <ion-back-button color="warning" defaultHref="/home" text="Atras"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Configuracion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-config-form></app-config-form>
+  <ion-list>
+      <ion-item>
+        <ion-icon slot="start" name="moon"></ion-icon>
+        <ion-label>Cambiar tema oscuro</ion-label>
+        <ion-toggle slot="end" (ionChange)="cambio()"></ion-toggle>
+      </ion-item>
+    </ion-list>
+</ion-content>
