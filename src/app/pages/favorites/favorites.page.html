@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button  color="warning" defaultHref="/home" text="Atras"></ion-back-button>
+        </ion-buttons>
+    <ion-title>Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-segment mode="md" scrollable>
+        <ion-segment-button *ngFor="let item of valores  | keyvalue" (ionSelect)="verCategoria($event)">
+          {{item.value}}
+        </ion-segment-button>
+    </ion-segment>
+      
+  <ion-list>
+    <ng-container *ngIf="datos.length; else elseTemplate">
+        <ion-item *ngFor="let item of datos" (click)="borrarReceta(item)">
+            <ion-avatar slot="start">
+              <img src="assets/img/default.jpg">
+            </ion-avatar>
+            <ion-label>
+              <ion-text color="dark">
+                {{item.nombre}}
+              </ion-text>
+              <h3>Total Personas: {{item.total_persona}}</h3>
+              <p>Fecha creado: {{item.createdAt  | date: 'dd/MM/yyyy'}}</p>
+              <p>{{item.descripcion}}</p>
+              
+            </ion-label>
+      </ion-item>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <ion-item>
+            <ion-avatar slot="start">
+                <ion-icon name="sad" size="large"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+              <ion-text color="danger">
+               No hay recetas favoritas!!
+              </ion-text>
+            </ion-label>
+      </ion-item>
+    </ng-template>
+    
+      
+  </ion-list>
+</ion-content>

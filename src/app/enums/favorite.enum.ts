@@ -1,0 +1,8 @@
+
+export enum CategoriaFavorite {
+  ENTRADAS = 'ENTRADAS',
+  SOPAS = 'SOPAS',
+  PLATOS_PRINCIPALES = 'PLATOS_PRINCIPALES',
+  BEBIDAS = 'BEBIDAS',
+  POSTRES = 'POSTRES'
+}

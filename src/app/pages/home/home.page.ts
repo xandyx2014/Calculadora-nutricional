@@ -56,4 +56,7 @@ export class HomePage {
   cambio() {
     document.body.classList.toggle('dark');
   }
+  irFavoritos() {
+    this.router.navigate(['/favorites']);
+  }
 }

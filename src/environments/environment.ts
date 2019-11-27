@@ -5,7 +5,8 @@
 export const environment = {
   production: true,
   urlHost: 'https://calculdoranutricionalapp.herokuapp.com',
-  storageKey: 'userAppNutri'
+  storageKey: 'userAppNutri',
+  storageKeyFavorites: 'userFavorite'
 };
 
 /*

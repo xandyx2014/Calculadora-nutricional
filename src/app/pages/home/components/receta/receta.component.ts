@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ModalController } from '@ionic/angular';
 import { UpdateRecetaComponent } from '../update-receta/update-receta.component';
+import { FavoriteStorageService } from 'src/app/services/favorite-storage.service';
+import { environment } from 'src/environments/environment';
+import { CategoriaFavorite } from 'src/app/enums/favorite.enum';
 
 @Component({
   selector: 'app-receta',
@@ -17,7 +20,8 @@ export class RecetaComponent implements OnInit {
   constructor(
     private router: Router,
     private notificationService: NotificationService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private favoriteStorageService: FavoriteStorageService
     ) { }
   irReceta(item): void {
     this.router.navigate(['/list', item.id], { queryParams: { ...item, foto: item.foto } });
@@ -61,7 +65,65 @@ export class RecetaComponent implements OnInit {
         text: 'Agregar Favorito',
         icon: 'heart',
         handler: () => {
-          console.log('Favorite clicked');
+          this.notificationService.presentActionSheet({
+            header: 'Tipo de comida',
+            mode: 'md',
+            buttons: [{
+              text: CategoriaFavorite.ENTRADAS,
+              icon: 'add-circle-outline',
+              handler: () => {
+                this.favoriteStorageService.guardarDatos({
+                  dato: {...item, referencia: CategoriaFavorite.ENTRADAS},
+                  referencia: environment.storageKeyFavorites
+                });
+              }
+            }, {
+              text: CategoriaFavorite.SOPAS,
+              icon: 'add-circle-outline',
+              handler: () => {
+                this.favoriteStorageService.guardarDatos({
+                  dato: {...item, referencia: CategoriaFavorite.SOPAS},
+                  referencia: environment.storageKeyFavorites
+                });
+              }
+            }, {
+              text: CategoriaFavorite.PLATOS_PRINCIPALES,
+              icon: 'add-circle-outline',
+              handler: () => {
+                this.favoriteStorageService.guardarDatos({
+                  dato: {...item, referencia: CategoriaFavorite.PLATOS_PRINCIPALES},
+                  referencia: environment.storageKeyFavorites
+                });
+              }
+            }, {
+              text: CategoriaFavorite.BEBIDAS,
+              icon: 'add-circle-outline',
+              handler: () => {
+                this.favoriteStorageService.guardarDatos({
+                  dato: {...item, referencias: CategoriaFavorite.BEBIDAS},
+                  referencia: environment.storageKeyFavorites
+                });
+              }
+            },
+            {
+              text: CategoriaFavorite.POSTRES,
+              icon: 'add-circle-outline',
+              handler: () => {
+                this.favoriteStorageService.guardarDatos({
+                  dato: {...item, referencia: CategoriaFavorite.POSTRES},
+                  referencia: environment.storageKeyFavorites
+                });
+              }
+            },
+            {
+              text: 'Cancelar',
+              icon: 'close',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            }]
+          });
         }
       }, {
         text: 'Cancel',
