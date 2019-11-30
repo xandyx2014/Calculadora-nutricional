@@ -34,7 +34,7 @@ export class FavoritesPage implements OnInit {
   }
   borrarReceta(item) {
     this.notificationService.presentActionSheet({
-      header: 'Albums',
+      header: 'Recetas',
       buttons: [
         {
           text: 'Cancel',
@@ -49,7 +49,7 @@ export class FavoritesPage implements OnInit {
           icon: 'heart-dislike',
           handler: () => {
             this.router.navigate(['/home']);
-            this.notificationService.presentToast('Elimniado', 'top');
+            this.notificationService.presentToast('Eliminada la Receta', 'top');
             this.favoriteStorageService.eliminarDato(
               item.id,
               environment.storageKeyFavorites);

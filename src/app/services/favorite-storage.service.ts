@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { NotificationService } from './notification.service';
+import { CategoriaFavorite } from '../enums/favorite.enum';
+import { environment } from 'src/environments/environment';
+import { IReceta } from '../interfaces/usuarioReceta.interface';
 @Injectable({
   providedIn: 'root'
 })
 export class FavoriteStorageService {
-  constructor(private storage: Storage) { }
+  constructor(
+    private storage: Storage,
+    private notificationService: NotificationService
+    ) { }
 
   guardarDatos<T>({dato, referencia}: {dato: T, referencia: string}) {
     return new Promise( ( resolve, reject ) => {
@@ -62,6 +69,59 @@ export class FavoriteStorageService {
           }
         });
       });
+    });
+  }
+  agregarFavorito(item: IReceta) {
+    this.notificationService.presentActionSheet({
+      header: 'Tipo de comida',
+      mode: 'md',
+      buttons: [{
+        text: CategoriaFavorite.ENTRADAS,
+        icon: 'add-circle-outline',
+        handler: () => {
+          this.guardarDatosComnida(item, CategoriaFavorite.ENTRADAS);
+        }
+      }, {
+        text: CategoriaFavorite.SOPAS,
+        icon: 'add-circle-outline',
+        handler: () => {
+          this.guardarDatosComnida(item, CategoriaFavorite.SOPAS);
+        }
+      }, {
+        text: CategoriaFavorite.PLATOS_PRINCIPALES,
+        icon: 'add-circle-outline',
+        handler: () => {
+          this.guardarDatosComnida(item, CategoriaFavorite.PLATOS_PRINCIPALES);
+        }
+      }, {
+        text: CategoriaFavorite.BEBIDAS,
+        icon: 'add-circle-outline',
+        handler: () => {
+          this.guardarDatosComnida(item, CategoriaFavorite.BEBIDAS);
+        }
+      },
+      {
+        text: CategoriaFavorite.POSTRES,
+        icon: 'add-circle-outline',
+        handler: () => {
+          this.guardarDatosComnida(item, CategoriaFavorite.POSTRES);
+        }
+      },
+      {
+        text: 'Cancelar',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+  }
+  private async guardarDatosComnida(item: IReceta, referencia: CategoriaFavorite) {
+    await this.notificationService.presentToast(`Agregado a Favoritos ${item.nombre}`, 'top');
+    await this.guardarDatos({
+      dato: {...item, referencia},
+      referencia: environment.storageKeyFavorites
     });
   }
 }

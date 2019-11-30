@@ -15,21 +15,25 @@
     </ion-segment>
       
   <ion-list>
-    <ng-container *ngIf="datos.length; else elseTemplate">
-        <ion-item *ngFor="let item of datos" (click)="borrarReceta(item)">
-            <ion-avatar slot="start">
-              <img src="assets/img/default.jpg">
-            </ion-avatar>
-            <ion-label>
-              <ion-text color="dark">
-                {{item.nombre}}
-              </ion-text>
-              <h3>Total Personas: {{item.total_persona}}</h3>
-              <p>Fecha creado: {{item.createdAt  | date: 'dd/MM/yyyy'}}</p>
-              <p>{{item.descripcion}}</p>
-              
-            </ion-label>
-      </ion-item>
+    <ng-container *ngIf="datos?.length || datos !== null; else elseTemplate">
+      <ion-virtual-scroll [items]="datos">
+        <ion-item *virtualItem="let item">
+            <ion-item (click)="borrarReceta(item)">
+                <ion-avatar slot="start">
+                  <img src="assets/img/default.jpg">
+                </ion-avatar>
+                <ion-label>
+                  <ion-text>
+                    {{item.nombre}}
+                  </ion-text>
+                  <h3>Total Personas: {{item.total_persona}}</h3>
+                  <p>Fecha creado: {{item.createdAt  | date: 'dd/MM/yyyy'}}</p>
+                  <p>{{item.descripcion}}</p>
+                </ion-label>
+          </ion-item>
+        </ion-item>
+      </ion-virtual-scroll>
+        
     </ng-container>
     <ng-template #elseTemplate>
         <ion-item>

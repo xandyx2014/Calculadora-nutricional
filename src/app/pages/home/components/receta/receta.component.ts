@@ -8,6 +8,7 @@ import { UpdateRecetaComponent } from '../update-receta/update-receta.component'
 import { FavoriteStorageService } from 'src/app/services/favorite-storage.service';
 import { environment } from 'src/environments/environment';
 import { CategoriaFavorite } from 'src/app/enums/favorite.enum';
+import { UsuarioRecetaService } from 'src/app/services/usuarioReceta.service';
 
 @Component({
   selector: 'app-receta',
@@ -21,6 +22,7 @@ export class RecetaComponent implements OnInit {
     private router: Router,
     private notificationService: NotificationService,
     private modalController: ModalController,
+    private usuarioRecetaService: UsuarioRecetaService,
     private favoriteStorageService: FavoriteStorageService
     ) { }
   irReceta(item): void {
@@ -36,7 +38,7 @@ export class RecetaComponent implements OnInit {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          console.log('Delete clicked');
+          this.mostrarNotificacion(item);
         }
       }, {
         text: 'Ver',
@@ -47,83 +49,14 @@ export class RecetaComponent implements OnInit {
       }, {
         text: 'Modificar',
         icon: 'build',
-        handler: async () => {
-          const modal = await this.modalController.create({
-            component: UpdateRecetaComponent,
-            cssClass: 'my-custom-modal-css',
-            componentProps: {
-              ...item
-            }
-          });
-          modal.onDidDismiss().then(() => {
-            this.completadoReceta.emit();
-            this.notificationService.presentToast('Actualizado Correctamente', 'top');
-          });
-          return await modal.present();
+        handler:  () => {
+          this.actualizarReceta(item);
         }
       }, {
         text: 'Agregar Favorito',
         icon: 'heart',
         handler: () => {
-          this.notificationService.presentActionSheet({
-            header: 'Tipo de comida',
-            mode: 'md',
-            buttons: [{
-              text: CategoriaFavorite.ENTRADAS,
-              icon: 'add-circle-outline',
-              handler: () => {
-                this.favoriteStorageService.guardarDatos({
-                  dato: {...item, referencia: CategoriaFavorite.ENTRADAS},
-                  referencia: environment.storageKeyFavorites
-                });
-              }
-            }, {
-              text: CategoriaFavorite.SOPAS,
-              icon: 'add-circle-outline',
-              handler: () => {
-                this.favoriteStorageService.guardarDatos({
-                  dato: {...item, referencia: CategoriaFavorite.SOPAS},
-                  referencia: environment.storageKeyFavorites
-                });
-              }
-            }, {
-              text: CategoriaFavorite.PLATOS_PRINCIPALES,
-              icon: 'add-circle-outline',
-              handler: () => {
-                this.favoriteStorageService.guardarDatos({
-                  dato: {...item, referencia: CategoriaFavorite.PLATOS_PRINCIPALES},
-                  referencia: environment.storageKeyFavorites
-                });
-              }
-            }, {
-              text: CategoriaFavorite.BEBIDAS,
-              icon: 'add-circle-outline',
-              handler: () => {
-                this.favoriteStorageService.guardarDatos({
-                  dato: {...item, referencias: CategoriaFavorite.BEBIDAS},
-                  referencia: environment.storageKeyFavorites
-                });
-              }
-            },
-            {
-              text: CategoriaFavorite.POSTRES,
-              icon: 'add-circle-outline',
-              handler: () => {
-                this.favoriteStorageService.guardarDatos({
-                  dato: {...item, referencia: CategoriaFavorite.POSTRES},
-                  referencia: environment.storageKeyFavorites
-                });
-              }
-            },
-            {
-              text: 'Cancelar',
-              icon: 'close',
-              role: 'cancel',
-              handler: () => {
-                console.log('Cancel clicked');
-              }
-            }]
-          });
+          this.favoriteStorageService.agregarFavorito(item);
         }
       }, {
         text: 'Cancel',
@@ -134,5 +67,47 @@ export class RecetaComponent implements OnInit {
         }
       }]
     });
+  }
+  mostrarNotificacion(item: IReceta) {
+    this.notificationService.presentAlert({
+      header: 'Confirmar!',
+      mode: 'md',
+      message: `Deseas eliminar <strong>${item.nombre}</strong>!!!`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            this.eliminarReceta(item);
+          }
+        }
+      ]
+    });
+  }
+  private async actualizarReceta(item) {
+    const modal = await this.modalController.create({
+      component: UpdateRecetaComponent,
+      cssClass: 'my-custom-modal-css',
+      componentProps: {
+        ...item
+      }
+    });
+    modal.onDidDismiss().then(() => {
+      this.completadoReceta.emit();
+      this.notificationService.presentToast('Actualizado Correctamente', 'top');
+    });
+    return await modal.present();
+  }
+  eliminarReceta(item) {
+    this.usuarioRecetaService.eliminarReceta(item)
+          .subscribe(() => {
+            this.completadoReceta.emit();
+            this.notificationService.presentToast(`Receta ${item.nombre} borrada`, 'top');
+          });
   }
 }

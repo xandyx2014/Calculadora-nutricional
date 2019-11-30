@@ -28,7 +28,7 @@ export class UpdateRecetaComponent implements OnInit {
     });
   }
   actualizar() {
-    this.usuarioRecetaService.actualizarReceta({...this.form.value}).subscribe(
+    this.usuarioRecetaService.actualizarReceta({...this.form.value, id: this.navParams.get('id')}).subscribe(
       ( resp ) => {
         this.modalController.dismiss();
       });

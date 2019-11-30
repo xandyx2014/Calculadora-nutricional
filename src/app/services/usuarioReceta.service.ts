@@ -33,15 +33,14 @@ export class UsuarioRecetaService {
   obtenerReceta(idReceta: string) {
     return this.loginService.getUserLocalStorage().pipe(
       switchMap(usuario =>
-      this.http.get< IRespApi<IReceta> >(`http://localhost:3000/usuario/${usuario.id}/receta/${idReceta}`)
+      this.http.get< IRespApi<IReceta> >(`${this.url}/usuario/${usuario.id}/receta/${idReceta}`)
       )
     );
   }
   actualizarReceta( receta: IReceta) {
-    return this.loginService.getUserLocalStorage().pipe(
-      switchMap(usuario =>
-      this.http.put(`http://localhost:3000/usuario/receta/${usuario.id}`, {...receta})
-      )
-    );
+    return this.http.put(`${this.url}/usuario/receta/${receta.id}`, {...receta});
+  }
+  eliminarReceta(receta: IReceta) {
+    return this.http.delete(`${this.url}/usuario/receta/${receta.id}`);
   }
 }
