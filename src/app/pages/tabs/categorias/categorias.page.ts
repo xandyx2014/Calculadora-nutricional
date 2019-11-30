@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { UsuarioCategoriaService } from 'src/app/services/usuario-categoria.service';
 import { Observable } from 'rxjs';
 import { IRespApi } from 'src/app/interfaces/resp.interface';
 import { ICategoria } from 'src/app/interfaces/usuarioCategoria.interface';
 import { AddCategoriaPage } from './components/add-categoria/add-categoria.page';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-categorias',
@@ -13,19 +14,32 @@ import { AddCategoriaPage } from './components/add-categoria/add-categoria.page'
 })
 export class CategoriasPage implements OnInit {
   array = [];
-  categoria$: Observable<IRespApi <ICategoria> >;
-  constructor(private modalController: ModalController,
-              private usuarioCategoriaService: UsuarioCategoriaService) { }
+  categoria$: Observable<IRespApi<ICategoria>>;
+  constructor(
+    private modalController: ModalController,
+    private loadingController: LoadingController,
+    private usuarioCategoriaService: UsuarioCategoriaService) { }
 
   ngOnInit() {
   }
   ionViewWillEnter() {
     this.cargarDatos();
   }
-  cargarDatos() {
-    this.categoria$ = this.usuarioCategoriaService.obtenerUsuarioCategoria();
+  async cargarDatos() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando...'
+    });
+    await loading.present();
+    this.categoria$ = this.usuarioCategoriaService.obtenerUsuarioCategoria()
+    .pipe(tap( (  ) => {
+      loading.dismiss();
+    } ));
   }
   async presentModal() {
+    console.log( 'hi' );
+    const loading = await this.loadingController.create({
+      message: 'Cargando...'
+    });
     const modal = await this.modalController.create({
       component: AddCategoriaPage,
       cssClass: 'my-custom-modal-css'
@@ -33,6 +47,7 @@ export class CategoriasPage implements OnInit {
     modal.onDidDismiss().then(() => {
       this.cargarDatos();
     });
-    return await modal.present();
+    await modal.present();
+    await loading.dismiss();
   }
 }

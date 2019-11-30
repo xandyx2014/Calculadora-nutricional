@@ -1,11 +1,13 @@
 <ng-container *ngIf="categorias.length > 0; else elseTemplate">
-  <ion-item *ngFor="let item of categorias" (click)="presentModal(item)">
-    <ion-label>
-      <ion-badge [color]="item.color">{{item.nombre}}</ion-badge>
-      <h3> {{item.descripcion}}</h3>
-      <p>Fecha creado: {{ item.createdAt | date: 'dd/MM/yyyy'}}</p>
-    </ion-label>
-  </ion-item>
+  <ion-virtual-scroll [items]="categorias">
+    <ion-item *virtualItem="let item" (click)="presentModal(item)">
+        <ion-label>
+            <ion-badge [color]="item.color">{{item.nombre}}</ion-badge>
+            <h3> {{item.descripcion}}</h3>
+            <p>Fecha creado: {{ item.createdAt | date: 'dd/MM/yyyy'}}</p>
+          </ion-label>
+    </ion-item>
+  </ion-virtual-scroll>
 </ng-container>
 
 

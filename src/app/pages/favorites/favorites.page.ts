@@ -30,11 +30,14 @@ export class FavoritesPage implements OnInit {
   }
   async verCategoria(evento) {
     const arrayRest = await this.agregarDatos();
-    this.datos = arrayRest.filter(item => item.referencia === evento.target.innerText);
+    if (arrayRest !== null || arrayRest !== undefined) {
+      this.datos = arrayRest.filter(item => item.referencia === evento.target.innerText);
+    }
   }
   borrarReceta(item) {
     this.notificationService.presentActionSheet({
       header: 'Recetas',
+      mode: 'md',
       buttons: [
         {
           text: 'Cancel',

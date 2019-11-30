@@ -99,7 +99,6 @@ export class RecetaComponent implements OnInit {
     });
     modal.onDidDismiss().then(() => {
       this.completadoReceta.emit();
-      this.notificationService.presentToast('Actualizado Correctamente', 'top');
     });
     return await modal.present();
   }

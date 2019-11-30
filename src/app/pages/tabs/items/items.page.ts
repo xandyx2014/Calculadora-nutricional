@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { ModalCreateComponent } from './components/modal-create/modal-create.component';
 import { UsuarioAlimentoService } from 'src/app/services/usuario-alimento.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { IAlimento } from 'src/app/interfaces/usuario_alimento.interface';
 
 @Component({
@@ -14,16 +14,25 @@ import { IAlimento } from 'src/app/interfaces/usuario_alimento.interface';
 export class ItemsPage implements OnInit {
   array = [, , , , , , , , , , ];
   $alimentos: Observable<IAlimento | IAlimento[]>;
-  constructor(public modalController: ModalController,
-              private usuarioAlimentoService: UsuarioAlimentoService) { }
+  constructor(
+    public modalController: ModalController,
+    private loadingController: LoadingController,
+    private usuarioAlimentoService: UsuarioAlimentoService) { }
 
   ngOnInit() {
   }
   ionViewWillEnter() {
     this.obtenerDatos();
   }
-  obtenerDatos() {
-    this.$alimentos = this.usuarioAlimentoService.obtenerUsuarioAlimento().pipe(map( item => item.data));
+  async obtenerDatos() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando...'
+    });
+    await loading.present();
+    this.$alimentos = this.usuarioAlimentoService.obtenerUsuarioAlimento()
+    .pipe(
+      map( item => item.data),
+      tap( () => loading.dismiss()));
   }
   async presentModal() {
     const modal = await this.modalController.create({
@@ -34,6 +43,6 @@ export class ItemsPage implements OnInit {
       this.obtenerDatos();
       console.log( 'modal dismiiss' );
     });
-    return await modal.present();
+    await modal.present();
   }
 }

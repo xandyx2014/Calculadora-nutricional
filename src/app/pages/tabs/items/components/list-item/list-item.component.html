@@ -4,19 +4,21 @@
   </ion-list-header>
   <div id="obrz">
   <ng-container *ngIf="alimentos?.length > 0; else elseTemplate">
-    <ion-item *ngFor="let item of alimentos" (click)="presentModal(item)">
-      <ion-avatar slot="start">
-        <img src="assets/img/default.jpg">
-      </ion-avatar>
-      <ion-label>
-        <h2>{{item.nombre}}</h2>
-        <h3>Cantidad: {{item.pb_kg}}kg</h3>
-        <h4>Precio x Unidad: {{item.precio_unidad}} Bs.</h4>
-        <p>Fecha creado: {{item.createdAt  | date: 'dd/MM/yyyy'}}</p>
-        <p>Fecha modificado: {{item.updatedAt  | date: 'dd/MM/yyyy'}}</p>
-        <ion-badge [color]="item.Categorium['color']">{{item?.Categorium['nombre']}}</ion-badge>
-      </ion-label>
-    </ion-item>
+    <ion-virtual-scroll [items]="alimentos">
+      <ion-item *virtualItem="let item" (click)="presentModal(item)">
+          <ion-avatar slot="start">
+              <img src="assets/img/default.jpg">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{item.nombre}}</h2>
+              <h3>Cantidad: {{item.pb_kg}}kg</h3>
+              <h4>Precio x Unidad: {{item.precio_unidad}} Bs.</h4>
+              <p>Fecha creado: {{item.createdAt  | date: 'dd/MM/yyyy'}}</p>
+              <p>Fecha modificado: {{item.updatedAt  | date: 'dd/MM/yyyy'}}</p>
+              <ion-badge [color]="item.Categorium['color']">{{item?.Categorium['nombre']}}</ion-badge>
+            </ion-label>
+      </ion-item>
+    </ion-virtual-scroll>
   </ng-container>
   <ng-template #elseTemplate>
     <ion-item>
@@ -34,6 +36,6 @@
   
 </div>
 </ion-list>
-<ion-button (click)="crearPdf()">
+<!-- <ion-button (click)="crearPdf()">
   CrearPdf
-</ion-button>
+</ion-button> -->

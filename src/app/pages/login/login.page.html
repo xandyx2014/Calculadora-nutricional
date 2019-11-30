@@ -1,7 +1,7 @@
-<ion-content>
-  <div class="hero-bkg-animated">
+<ion-content color="warning">
+  <div>
     <div fxLayout="row" fxLayoutAlign="center center">
-      <ion-avatar style="width: 100px;height: 100px;">
+      <ion-avatar style="width: 200px;height: 200px;">
         <img src="assets/logo.png" />
       </ion-avatar>
     </div>
@@ -21,7 +21,9 @@
             </ion-text>
           </ion-label>
           <ion-button (click)="login()" color="warning" fill="solid" shape="round" expand="block">
-            login
+            <ion-text color="light">
+              Login
+            </ion-text>
           </ion-button>
         </form>
       </ion-card-content>

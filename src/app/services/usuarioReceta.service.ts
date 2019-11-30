@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
-import { Usuario } from '../interfaces/usuario.interface';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { IRespApi } from '../interfaces/resp.interface';

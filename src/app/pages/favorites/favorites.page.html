@@ -9,7 +9,7 @@
 
 <ion-content>
     <ion-segment mode="md" scrollable>
-        <ion-segment-button *ngFor="let item of valores  | keyvalue" (ionSelect)="verCategoria($event)">
+        <ion-segment-button  mode="ios" *ngFor="let item of valores  | keyvalue" (ionSelect)="verCategoria($event)">
           {{item.value}}
         </ion-segment-button>
     </ion-segment>

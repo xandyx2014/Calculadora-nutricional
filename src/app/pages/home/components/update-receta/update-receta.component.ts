@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavParams, ModalController } from '@ionic/angular';
 import { UsuarioRecetaService } from 'src/app/services/usuarioReceta.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-update-receta',
@@ -14,11 +15,15 @@ export class UpdateRecetaComponent implements OnInit {
     private fb: FormBuilder,
     private navParams: NavParams,
     private usuarioRecetaService: UsuarioRecetaService,
+    private notificationService: NotificationService,
     private modalController: ModalController
     ) { }
 
   ngOnInit() {
     this.crearFormulario();
+  }
+  obtenerNombre() {
+    return this.navParams.get('nombre');
   }
   crearFormulario() {
     this.form = this.fb.group({
@@ -31,6 +36,7 @@ export class UpdateRecetaComponent implements OnInit {
     this.usuarioRecetaService.actualizarReceta({...this.form.value, id: this.navParams.get('id')}).subscribe(
       ( resp ) => {
         this.modalController.dismiss();
+        this.notificationService.presentToast('Actualizado Correctamente', 'top');
       });
   }
 

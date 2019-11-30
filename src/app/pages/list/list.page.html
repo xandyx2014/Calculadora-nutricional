@@ -11,6 +11,7 @@
 
 <ion-content>
   <ng-container *ngIf="($detalleReceta | async) as detalleReceta;">
+    
     <ion-img [src]=" imagenPreview | urlImg"></ion-img>
     <ion-item class="title--page">
       <ion-avatar slot="start">
@@ -31,7 +32,10 @@
 
         <ion-button (click)="presentModal()" color="warning" fill="solid" shape="round" expand="block">
           <ion-icon slot="start" name="add" color="light"></ion-icon>
-          Agregar Comida
+          <ion-text color="light">
+              Agregar Comida
+          </ion-text>
+          
         </ion-button>
         <div class="button-wrapper">
             <span class="label">

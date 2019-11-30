@@ -3,6 +3,9 @@
 
   <ion-list>
     <ng-container *ngIf="($usuario | async) as usuario">
+      <ion-item >
+        <ion-label fxLayoutAlign="center center" color="medium">Bienvenido</ion-label>
+      </ion-item>
       <ion-card fxLayout="column" fxLayoutAlign="center center">
         <img *ngIf="usuario.sexo === 'hombre'" class="profile" src="assets/img/hombre.svg" alt="">
         <img *ngIf="usuario.sexo === 'mujer'" class="profile" src="assets/img/mujer.svg" alt="">
@@ -26,7 +29,7 @@
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button mode="ios" color="warning">
-      <ion-icon name="add-circle-outline"></ion-icon>
+      <ion-icon name="add-circle-outline" color="light"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
       <ion-fab-button (click)="irFavoritos()" title="Favoritos" mode="ios"  class="arriba" color="primary">
@@ -37,7 +40,7 @@
       </ion-fab-button>
       <!-- <ion-text class="label-fab">lavel 1</ion-text> -->
       <ion-fab-button (click)="presentModal()" mode="ios" title="Crear receta" color="medium" color="warning">
-        <ion-icon name="add-circle-outline"></ion-icon>
+        <ion-icon color="light" name="add-circle-outline"></ion-icon>
       </ion-fab-button>
       <ion-fab-button (click)="irConfiguracion()" mode="ios" title="Configuracion" color="medium">
         <ion-icon name="settings"></ion-icon>
