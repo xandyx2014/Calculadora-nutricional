@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { IRespApi } from '../interfaces/resp.interface';
 import { HttpClient } from '@angular/common/http';
 import { IDetalleReceta } from '../interfaces/detalleReceta.interface';

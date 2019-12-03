@@ -40,11 +40,11 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.backgroundColorByHexString('#ffce00');
+      this.statusBar.backgroundColorByHexString('#F15E4A');
       this.splashScreen.hide();
-      this.themeDarkService.isDarkTheme().then( ( {dark} ) => {
-        if (dark !== null || dark !== undefined) {
-          if (dark === true) {
+      this.themeDarkService.isDarkTheme().then( ( item ) => {
+        if (item) {
+          if (item.dark === true) {
             this.themeDarkService.cambio();
           }
         }

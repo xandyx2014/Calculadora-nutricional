@@ -1,0 +1,93 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>Valores para {{numeroPersona}} Persona</ion-card-subtitle>
+    <ion-card-title>Receta</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list>
+      <ion-list-header>
+        <ion-label color="warning">Composicion Quimica :</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Caloria</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.ca * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Colesterol</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.colesterol * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fe (mg)</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.fe * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Na</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.na * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fibra (gr)</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.fibra * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Grasas (gr)</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.grs * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Carbohidratos (gr)</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.h_d_c * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Potasio (gr)</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.potasio * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Proteínas (gr)</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.prot * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vitamina A</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.vitamina_a * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vitamina B1</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.vitamina_b1 * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vitamina B12</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.vitamina_b12 * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vitamina B6</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.vitamina_b6 * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vitamina C</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.vitamina_c * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vitamina E</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.vitamina_e * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vitamina K</ion-label>
+        <ion-note color="primary" slot="end">{{detalleRecetaSum.vitamina_k * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label color="secondary">$ Total:</ion-label>
+        <ion-note color="secondary" slot="end">{{detalleRecetaSum.total * numeroPersona}}</ion-note>
+      </ion-item>
+      <ion-list-header>
+          <ion-label color="warning">Cantidad de Personas :</ion-label>
+        </ion-list-header>
+      <ion-item>
+        <ion-button (click)="sumar()">
+            <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-input style="text-align: center;" type="number" [(ngModel)]="numeroPersona" disabled="true"></ion-input>
+        <ion-button (click)="restar()">
+            <ion-icon name="remove-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

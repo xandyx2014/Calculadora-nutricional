@@ -48,7 +48,7 @@ export class FavoritesPage implements OnInit {
           }
         },
         {
-          text: 'Dejar Seguir',
+          text: 'Eliminar de la categoria',
           icon: 'heart-dislike',
           handler: () => {
             this.router.navigate(['/home']);

@@ -35,7 +35,10 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     loadChildren: () => import('./pages/configuracion-usuario/configuracion-usuario.module').then(m => m.ConfiguracionUsuarioPageModule)
   },
-  { path: 'favorites', loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule ) }
+  { path: 'favorites', loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule ) },
+  {
+  path: 'nutricion/:id',
+  loadChildren: () => import('./pages/nutricion/nutricion.module').then( ( m) => m.NutricionPageModule ) }
 ];
 
 @NgModule({

@@ -12,7 +12,7 @@
 <ion-content>
   <ng-container *ngIf="($detalleReceta | async) as detalleReceta;">
     
-    <ion-img [src]=" imagenPreview | urlImg"></ion-img>
+    <ion-img [src]=" imagenPreview | urlImg" style="height: 50vh;"></ion-img>
     <ion-item class="title--page">
       <ion-avatar slot="start">
         <img [src]=" imagenPreview | urlImg">
@@ -34,6 +34,13 @@
           <ion-icon slot="start" name="add" color="light"></ion-icon>
           <ion-text color="light">
               Agregar Comida
+          </ion-text>
+          
+        </ion-button>
+        <ion-button (click)="verValorNutricional()" color="primary" fill="solid" shape="round" expand="block">
+          <ion-icon  slot="start" name="book" color="light"></ion-icon>
+          <ion-text color="light">
+              Detalle Receta
           </ion-text>
           
         </ion-button>

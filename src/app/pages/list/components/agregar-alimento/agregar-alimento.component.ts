@@ -27,7 +27,6 @@ export class AgregarAlimentoComponent implements OnInit {
               private fb: FormBuilder) { }
 
   ngOnInit() {
-    console.log( this.id );
     this.obtenerUsuarioAlimento();
     this.crearFormulario();
   }
@@ -66,7 +65,9 @@ export class AgregarAlimentoComponent implements OnInit {
     });
   }
   crear() {
-    this.detalleRecetaService.crearDetalleReceta(this.id, {...this.form.value})
+    this.detalleRecetaService.crearDetalleReceta(this.id, {
+      ...this.form.value,
+      cantidad: (this.form.value.cantidad / 1000)})
     .pipe(
       catchError( ( respError ) => {
         this.notificationService.presentAlert({

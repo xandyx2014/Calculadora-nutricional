@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { IRespApi } from '../interfaces/resp.interface';
 import { IReceta } from '../interfaces/usuarioReceta.interface';
@@ -21,6 +21,16 @@ export class UsuarioRecetaService {
       this.http.get< IRespApi<IReceta> >(`${this.url}/usuario/${usuario.id}/receta`)
       )
     );
+  }
+  buscarReceta(query: string) {
+   // /usuario/1/receta/buscar?q=
+   return this.loginService.getUserLocalStorage().pipe(
+    switchMap(usuario =>
+    this.http.get< IRespApi<IReceta> >(`${this.url}/usuario/${usuario.id}/receta/buscar?q=${query}`).pipe(
+      debounceTime(500)
+    )
+    )
+  );
   }
   crearReceta(receta: IReceta): Observable<IRespApi<IReceta>> {
     return this.loginService.getUserLocalStorage().pipe(

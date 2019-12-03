@@ -8,7 +8,7 @@ import { IReceta } from 'src/app/interfaces/usuarioReceta.interface';
 import { IRespApi } from 'src/app/interfaces/resp.interface';
 import { LoginService } from 'src/app/services/login.service';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
-import { NotificationService } from 'src/app/services/notification.service';
+
 
 @Component({
   selector: 'app-home',
@@ -58,5 +58,9 @@ export class HomePage {
   }
   irFavoritos() {
     this.router.navigate(['/favorites']);
+  }
+  buscarReceta(event) {
+    const query = event.target.value;
+    this.$receta = this.usuarioRecetaService.buscarReceta(query);
   }
 }

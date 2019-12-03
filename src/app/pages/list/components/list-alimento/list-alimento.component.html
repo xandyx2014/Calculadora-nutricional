@@ -2,12 +2,14 @@
   <ion-list>
     <ion-list-header>
       <ion-label color="medium">Ingredientes</ion-label>
+      <ion-label color="medium" slot="end">Calorias</ion-label>
     </ion-list-header>
       <ion-item  *ngFor="let item of detalleReceta" (click)="presentActionSheet(item)"> 
-        <ion-note color="warning" slot="start">{{item.cantidad}}</ion-note>
+        <ion-note color="warning" slot="start">{{item.cantidad}} .Kg</ion-note>
         <ion-text color="medium">
           {{item.Alimento.nombre}}
         </ion-text>  
+        <ion-note color="warning" slot="end">{{item.Alimento.ca}} Calorias</ion-note>
       </ion-item>
   </ion-list>
 </ng-container>

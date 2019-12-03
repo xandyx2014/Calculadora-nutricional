@@ -26,6 +26,7 @@ export class ValorNutricionalPage implements OnInit {
       flatMap( ({id}) => this.usuarioAlimentoService.obtenerAlimento(id)),
       tap( () => {
         this.activatedRoute.queryParams.subscribe( ( {cantidad} ) => {
+          console.log( cantidad );
           this.cantidadTotalAlimento = cantidad;
         });
       }),
@@ -40,8 +41,8 @@ export class ValorNutricionalPage implements OnInit {
     this.pn = (Number(pbKg) / Number(fc));
     return this.pn;
   }
-  total(pb, unidad) {
-    return Number(pb) * Number(unidad);
+  total( unidad) {
+    return  this.cantidadTotalAlimento * Number(unidad);
   }
   pnRacDia(): number {
     this.pnRacionDia = (((this.pn) / 1) / 1);

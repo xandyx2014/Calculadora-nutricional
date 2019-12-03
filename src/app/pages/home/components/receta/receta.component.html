@@ -1,21 +1,39 @@
-<ng-container *ngIf="receta.length > 0;else elseTemplate">
-    <div fxLayout="row wrap" fxLayoutAlign="center center">
-  <ion-card *ngFor="let item of receta;let i = index" (click)="mostrar(item)" class="main-recetas" fxLayout="column"
-    fxLayoutAlign="center center">
-    <img class="img-receta" [src]=" item.foto | urlImg" alt="">
-    <ion-card-header>
-      <ion-card-subtitle color="medium" fxLayoutAlign="center center"> {{item.nombre}}</ion-card-subtitle>
-    </ion-card-header>
-  </ion-card>
-  </div>
+
+<ng-container *ngIf="receta;else elseTemplate">
+    <ion-list>
+      <ion-virtual-scroll [items]="receta">
+        <ion-item *virtualItem="let item" (click)="mostrar(item)">
+            <ion-avatar slot="start">
+                <img [src]=" item.foto | urlImg">
+            </ion-avatar>
+            <ion-label>
+              <h2> <ion-note color="warning">{{item.nombre}}</ion-note> </h2>
+              <h3> <ion-note color="primary">Total Personas :</ion-note> {{item.total_persona}}</h3>
+              <h5><ion-note color="primary">Fecha :</ion-note> {{item.createdAt | date: 'dd/MM/yyyy'}}</h5>
+              <ion-text>
+                  {{item.descripcion}}
+              </ion-text>
+              
+            </ion-label>
+        </ion-item>
+      </ion-virtual-scroll>
+    </ion-list>
 </ng-container>
 <ng-template #elseTemplate>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle mode="md">No existen Datos</ion-card-subtitle>
-      <ion-card-title mode="md" color="medium">Cantidad: 0</ion-card-title>
-    </ion-card-header>
-  </ion-card>
+  <ion-item>
+    <ion-avatar slot="start">
+        <!-- <img [src]=" item.foto | urlImg"> -->
+    </ion-avatar>
+    <ion-label>
+      <h2> <ion-note color="warning">No Existe recetas</ion-note> </h2>
+      <h3> <ion-note color="primary">Total Personas :</ion-note></h3>
+      <h5><ion-note color="primary">Fecha :</ion-note></h5>
+      <ion-text>
+          
+      </ion-text>
+      
+    </ion-label>
+</ion-item>
 </ng-template>
 
 

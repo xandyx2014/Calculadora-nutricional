@@ -1,0 +1,23 @@
+
+    <ng-container *ngIf="ok">
+      <app-grafica 
+      titulo="Calorias"
+      [chartData]="receta | getValueObject:'ca'"
+      [chartLabel]="receta | getValueObject:'nombre'">
+      </app-grafica>
+      <app-grafica 
+      titulo="Grasas"
+      [chartData]="receta | getValueObject:'grs'"
+      [chartLabel]="receta | getValueObject:'nombre'">
+      </app-grafica>
+      <app-grafica 
+      titulo="Proteina"
+      [chartData]="receta | getValueObject:'h_d_c'"
+      [chartLabel]="receta | getValueObject:'nombre'">
+      </app-grafica>
+      <app-grafica 
+      titulo="Carbohidratos"
+      [chartData]="receta | getValueObject:'h_d_c'"
+      [chartLabel]="receta | getValueObject:'nombre'">
+      </app-grafica>
+    </ng-container>

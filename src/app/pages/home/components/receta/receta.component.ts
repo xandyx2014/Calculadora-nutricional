@@ -1,13 +1,10 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IReceta } from 'src/app/interfaces/usuarioReceta.interface';
-import { IRespApi } from 'src/app/interfaces/resp.interface';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ModalController } from '@ionic/angular';
 import { UpdateRecetaComponent } from '../update-receta/update-receta.component';
 import { FavoriteStorageService } from 'src/app/services/favorite-storage.service';
-import { environment } from 'src/environments/environment';
-import { CategoriaFavorite } from 'src/app/enums/favorite.enum';
 import { UsuarioRecetaService } from 'src/app/services/usuarioReceta.service';
 
 @Component({
@@ -53,7 +50,7 @@ export class RecetaComponent implements OnInit {
           this.actualizarReceta(item);
         }
       }, {
-        text: 'Agregar Favorito',
+        text: 'Agregar a Categoria',
         icon: 'heart',
         handler: () => {
           this.favoriteStorageService.agregarFavorito(item);

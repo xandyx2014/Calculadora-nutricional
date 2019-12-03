@@ -1,0 +1,34 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>{{titulo}}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="chart">
+            <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              [options]="pieChartOptions"
+              [colors]="pieChartColors"
+              [legend]="pieChartLegend">
+            </canvas>
+      </div>
+      <ion-list>
+        <ion-list-header>
+          <ion-label color="warning">Cantidad de Personas</ion-label>
+        </ion-list-header>
+          <ion-item>
+              <ion-button (click)="sumar()">
+                  <ion-icon name="add-circle-outline"></ion-icon>
+              </ion-button>
+              <ion-input style="text-align: center;" type="number" [(ngModel)]="numeroPersona" disabled="true"></ion-input>
+              <ion-button (click)="restar()">
+                  <ion-icon name="remove-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-item>
+      </ion-list>
+      
+  </ion-card-content>
+</ion-card>
+
+  

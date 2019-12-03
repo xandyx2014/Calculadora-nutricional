@@ -3,19 +3,19 @@
       <ion-buttons slot="start">
           <ion-back-button  color="warning" defaultHref="/home" text="Atras"></ion-back-button>
         </ion-buttons>
-    <ion-title>Favoritos</ion-title>
+    <ion-title>Categorias</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-segment mode="md" scrollable>
-        <ion-segment-button  mode="ios" *ngFor="let item of valores  | keyvalue" (ionSelect)="verCategoria($event)">
+    <ion-segment mode="md" scrollable color="primary">
+        <ion-segment-button type="button" color="primary"  mode="md" *ngFor="let item of valores  | keyvalue" (ionSelect)="verCategoria($event)">
           {{item.value}}
         </ion-segment-button>
     </ion-segment>
       
   <ion-list>
-    <ng-container *ngIf="datos?.length || datos !== null; else elseTemplate">
+    <ng-container *ngIf="datos?.length; else elseTemplate">
       <ion-virtual-scroll [items]="datos">
         <ion-item *virtualItem="let item">
             <ion-item (click)="borrarReceta(item)">

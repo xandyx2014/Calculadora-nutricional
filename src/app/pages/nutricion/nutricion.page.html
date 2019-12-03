@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="warning" defaultHref="/home" text="Atras"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="medium">
+      Valor Nutricional
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="(sumatoriaReceta$ | async) as sumatoriaReceta; else elseTemplate">
+      <app-list-nutricion [detalleRecetaSum]="sumatoriaReceta.sumatoria"></app-list-nutricion>
+      <app-list-grafica [dataReceta]="sumatoriaReceta.detalleReceta"></app-list-grafica>
+      <app-radar-grafica [data]="sumatoriaReceta.detalleReceta"></app-radar-grafica>
+  </ng-container>
+  <ng-template #elseTemplate>
+      <div fxLayoutAlign="center center" style="height: 100%;">
+          <ion-spinner name="crescent" style="width: 80px; height: 80px;"></ion-spinner>
+      </div>
+      
+  </ng-template>
+  
+  
+</ion-content>

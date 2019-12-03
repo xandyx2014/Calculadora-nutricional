@@ -1,12 +1,13 @@
 <!--  -->
 <ion-content>
-
+  <ion-searchbar placeholder="Buscar una receta" (ionChange)="buscarReceta($event)"></ion-searchbar>
   <ion-list>
     <ng-container *ngIf="($usuario | async) as usuario">
       <ion-item >
         <ion-label fxLayoutAlign="center center" color="medium">Bienvenido</ion-label>
       </ion-item>
-      <ion-card fxLayout="column" fxLayoutAlign="center center">
+      <div fxLayoutAlign="center center">
+      <ion-card class="card-img" fxLayout="column" fxLayoutAlign="center center">
         <img *ngIf="usuario.sexo === 'hombre'" class="profile" src="assets/img/hombre.svg" alt="">
         <img *ngIf="usuario.sexo === 'mujer'" class="profile" src="assets/img/mujer.svg" alt="">
         <ion-card-content>
@@ -18,13 +19,19 @@
           </ion-text>
         </ion-card-content>
       </ion-card>
+    </div>
     </ng-container>
     <ion-item>
       <ion-label class="title" color="medium" fxLayoutAlign="center center">Tus Recetas</ion-label>
     </ion-item>
-    <ng-container *ngIf="$receta| async as receta;">
+    <ng-container *ngIf="$receta | async as receta; else elseTemplate">
       <app-receta [receta]="receta.data" (completadoReceta)="obtenerDatos()"></app-receta>
     </ng-container>
+    <ng-template #elseTemplate>
+      <div fxLayoutAlign="center center">
+      <ion-spinner style="width: 80px; height: 80px;"></ion-spinner>
+      </div>
+    </ng-template>
 
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -32,8 +39,8 @@
       <ion-icon name="add-circle-outline" color="light"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
-      <ion-fab-button (click)="irFavoritos()" title="Favoritos" mode="ios"  class="arriba" color="primary">
-            <ion-icon name="heart" color="danger"></ion-icon>
+      <ion-fab-button (click)="irFavoritos()" title="Categorias" mode="ios"  class="arriba" color="primary"> 
+            <ion-icon name="book" color="light"></ion-icon>
       </ion-fab-button>
       <ion-fab-button (click)="irInventario()" title="Inventario" mode="ios" class="arriba" color="primary">
         <ion-icon name="logo-dropbox"></ion-icon>
